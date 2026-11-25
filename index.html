@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Alerta de Seguridad</title>
+
+<style>
+body {
+    background: #050505;
+    color: #00ff66;
+    font-family: monospace;
+    text-align: center;
+    padding: 30px;
+    margin: 0;
+}
+
+h1 {
+    font-size: 30px;
+}
+
+.contenedor {
+    max-width: 600px;
+    margin: 50px auto;
+}
+
+.barra {
+    width: 100%;
+    height: 20px;
+    background: #222;
+    border: 1px solid #00ff66;
+}
+
+#progreso {
+    width: 0%;
+    height: 100%;
+    background: #00ff66;
+}
+
+#alerta {
+    display: none;
+}
+
+.rojo {
+    color: #ff3333;
+    animation: parpadeo 1s infinite;
+}
+
+@keyframes parpadeo {
+    50% { opacity: 0.3; }
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.aviso {
+    color: white;
+    border: 1px solid #00ff66;
+    padding: 15px;
+    margin-top: 30px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <div id="escaneo">
+
+        <h1>CYBERSECURITY</h1>
+
+        <p>Simulación de escaneo...</p>
+
+        <div class="barra">
+            <div id="progreso"></div>
+        </div>
+
+        <h2 id="porcentaje">0%</h2>
+
+        <p id="estado">Iniciando simulación...</p>
+
+    </div>
+
+    <div id="alerta">
+
+        <h1 style="font-size:65px">⚠</h1>
+
+        <h1 class="rojo">
+            ¡FUISTE ESCANEADO!
+        </h1>
+
+        <h2>SIMULACIÓN DE QUISHING</h2>
+
+        <p>
+            Acabas de escanear un código QR
+            y acceder a una página web.
+        </p>
+
+        <p style="color:orange">
+            ¿Qué habría pasado si este código
+            perteneciera a un ciberdelincuente?
+        </p>
+
+        <div class="aviso">
+            Esta es una simulación educativa.
+            No se ha realizado un escaneo real
+            de tu dispositivo ni se han solicitado
+            datos personales.
+        </div>
+
+        <h2>PIENSA ANTES DE ESCANEAR</h2>
+
+        <p>Capacitación en Ciberseguridad</p>
+
+    </div>
+
+</div>
+
+<script>
+
+let porcentaje = 0;
+
+let intervalo = setInterval(function() {
+
+    porcentaje++;
+
+    document.getElementById("progreso")
+        .style.width = porcentaje + "%";
+
+    document.getElementById("porcentaje")
+        .innerText = porcentaje + "%";
+
+    if (porcentaje === 30) {
+        document.getElementById("estado")
+            .innerText = "Simulando análisis...";
+    }
+
+    if (porcentaje === 60) {
+        document.getElementById("estado")
+            .innerText = "Simulando verificación...";
+    }
+
+    if (porcentaje === 90) {
+        document.getElementById("estado")
+            .innerText = "Finalizando simulación...";
+    }
+
+    if (porcentaje >= 100) {
+
+        clearInterval(intervalo);
+
+        document.getElementById("escaneo")
+            .style.display = "none";
+
+        document.getElementById("alerta")
+            .style.display = "block";
+    }
+
+}, 70);
+
+</script>
+
+</body>
+</html>
